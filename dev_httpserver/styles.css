@@ -1,0 +1,39 @@
+body {
+    background-color: #f8f9fa;
+  }
+  
+  .container {
+    margin-top: 50px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .collapse-section {
+    margin-bottom: 20px;
+  }
+  
+  .btn-custom {
+    background-color: #A9A9A9;
+    color: #ffffff;
+  }
+  
+  #share-url {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
