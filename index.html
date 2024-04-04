@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Secure File Sharing</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    form {
-      margin-bottom: 20px;
-    }
-    input[type="number"], input[type="date"] {
-      width: 200px;
-    }
-    button {
-      padding: 10px 20px;
-    }
-    #share-url {
-      margin-top: 20px;
-    }
-  </style>
+  <title>Secure File Sharing v.1</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Secure File Sharing</h1>
-  
-  <form id="upload-form">
-    <input type="file" id="file-input" required>
-    <br><br>
-    <label for="views-input">Number of views before expiration:</label>
-    <input type="number" id="views-input" min="1" required>
-    <br><br>
-    <label for="expiration-input">Expiration date (optional):</label>
-    <input type="date" id="expiration-input">
-    <br><br>
-    <button type="submit">Upload and Generate URL</button>
-  </form>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center mb-4">secure file sharing v.1</h1>
+        <form id="upload-form">
+          <div class="form-group">
+            <label for="file-input">select a file:</label>
+            <input type="file" class="form-control-file" id="file-input" required>
+          </div>
+          <div class="collapse-section">
+            <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#advanced-settings" aria-expanded="false" aria-controls="advanced-settings">
+              advanced settings
+            </button>
+            <div class="collapse" id="advanced-settings">
+              <div class="card card-body">
+                <div class="form-group">
+                  <label for="views-input"># views before self-destruct:</label>
+                  <input type="number" class="form-control" id="views-input" min="1" value="1">
+                </div>
+                <div class="form-group">
+                  <label for="expiration-input">expiration date:</label>
+                  <input type="date" class="form-control" id="expiration-input">
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-custom btn-block">create url</button>
+        </form>
+        <div id="share-url" class="mt-4"></div>
+        <div class="features-container mt-4">
+          <ol>
+            <li>
+              <strong>encryption -</strong> utilizes AES-256-GCM to encrypt the files.
+            </li>
+            <li>
+              <strong>token-based access -</strong> instead of directly sharing the decryption key, generate a token that acts as a reference to the encrypted file and its corresponding decryption key stored on the server. this token is provided to the recipient when the file is shared.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div id="share-url"></div>
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
     const form = document.getElementById('upload-form');
     const shareUrlDiv = document.getElementById('share-url');
@@ -51,8 +65,8 @@
 
       const formData = new FormData();
       formData.append('file', fileInput.files[0]);
-      formData.append('views', viewsInput.value);
-      formData.append('expiration', expirationInput.value);
+      formData.append('views', viewsInput.value || '1');
+      formData.append('expiration', expirationInput.value || '');
 
       try {
         const response = await fetch('http://localhost:5000/upload', {
