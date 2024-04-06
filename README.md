@@ -7,3 +7,9 @@
 2. open terminal 2 stay in project dir, run python backend.py
 3. nav to http://localhost:8000/ on chrome, to test functionality
 4. add stuff
+
+# todo:
+1. create records to view / edit status, views for self-destruct, etc.
+2. experiment w/ frontend (get off bootstrap)
+3. deploy online
+4. test
