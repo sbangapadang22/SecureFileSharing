@@ -10,4 +10,4 @@
 1. open terminal 1 and nav to dev_httpserver and run python -m http.server
 2. open terminal 2 stay in project dir, run python backend.py
 3. nav to http://localhost:8000/ on chrome, to test functionality
-4. add stuf
+4. add stuff
